@@ -1,3 +1,4 @@
+import { TContext } from './../../../../config/context';
 import db, { table_users_profiles } from '../../../../config/db'
 import { IUser_Profile } from './../../../../config/db/types'
 
@@ -17,7 +18,8 @@ export default {
 
     return result
   },
-  async excluirUsuarioPerfil(_, { id }, ctx) {
+  async excluirUsuarioPerfil(_, { id }, ctx?: TContext) {
+    ctx && ctx.verifyAdm()
 
     const rows = await db(table_users_profiles)
     .where('id', id)
@@ -25,8 +27,8 @@ export default {
 
     return !!rows
   },
-  async alterarUsuarioPerfil(_, { dados: { id, ...args }}, ctx) {
-
+  async alterarUsuarioPerfil(_, { dados: { id, ...args }}, ctx?: TContext) {
+    ctx && ctx.verifyAdm()
     const newData = {
       ...args
     }

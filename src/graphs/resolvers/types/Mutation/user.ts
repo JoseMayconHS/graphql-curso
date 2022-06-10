@@ -50,8 +50,9 @@ export default {
 
     return !!rows
   },
-  async alterarUsuario(_, { dados: { id, ...args }}, ) {
-
+  async alterarUsuario(_, { dados: { id, ...args }}, ctx?: TContext) {
+    ctx && ctx.verifyMySelf({ id, email: args.email })
+    
     const newData = {
       ...args
     }

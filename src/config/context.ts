@@ -56,6 +56,11 @@ const handle = ({ req }: ContextParams): TContext => {
       if (!filter) throw err
 
       const { id, email } = filter
+
+      if (!id && !email) throw err
+
+      if (id && payload.id !== id) throw err
+      if (email && payload.email !== email) throw err
     }
   }
 }
