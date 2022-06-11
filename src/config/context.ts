@@ -20,8 +20,8 @@ type ContextParams = {
 }
 
 const handle = ({ req }: ContextParams): TContext => {
-  const auth = req.headers.authorization ?? `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwibmFtZSI6Ik1heWNvbiIsImVtYWlsIjoibWF5Y29uQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJDd3NnU2R29jaXRERXF5QzVhb09YeE8xNkJ4TXRrc0lzdUZMSmVPOFRGdWpnM0F3WnlQRlBDIiwiYWN0aXZlIjoxLCJjcmVhdGVkX2F0IjoiMjAyMi0wNi0wNyAyMzo0MDoyMCIsInVwZGF0ZWRfYXQiOiIyMDIyLTA2LTA3IDIzOjQwOjIwIiwicGVyZmlsIjp7ImlkIjoyLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsImxhYmVsIjoiYWRtIiwiY3JlYXRlZF9hdCI6IjIwMjItMDYtMDcgMjI6MzI6MjQiLCJ1cGRhdGVkX2F0IjoiMjAyMi0wNi0wNyAyMjozMjoyNCJ9LCJpYXQiOjE2NTQ2NDkwNDEsImV4cCI6MTY1NDkwODI0MX0.N9UAG2hWzbDkC1RtUY_Usu8oGUxjXlUtLZsb7uRN4v4`
-
+  const auth = req.headers.authorization ?? ''
+  
   const token = auth?.substring(7)
 
   let payload, admin
