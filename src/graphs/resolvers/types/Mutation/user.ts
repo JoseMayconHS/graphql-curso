@@ -47,7 +47,7 @@ export default {
 		return result
 	},
 	async excluirUsuario(_, { id }, ctx?: TContext) {
-		ctx && ctx.verifyAdm()
+		ctx && (ctx.verifyAdm() || ctx.verifyMySelf({ id }))
 
 		const rows = await db(table_users).where('id', id).del()
 

@@ -7,8 +7,11 @@ interface ControllerData extends IUser_Profile {}
 export default {
 	async novoUsuarioPerfil(
 		_,
-		{ dados: { user_id, profile_id } }: { dados: ControllerData }
+		{ dados: { user_id, profile_id } }: { dados: ControllerData },
+		ctx?: TContext
 	): Promise<IUser_Profile> {
+		ctx && ctx.verifyAdm()
+
 		const novo: IUser_Profile = {
 			user_id,
 			profile_id,
