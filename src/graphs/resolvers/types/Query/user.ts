@@ -1,35 +1,42 @@
 import bcryptjs from 'bcryptjs'
 
-import { userLogged } from './../../../../utils/user'
 import db, { table_users } from '../../../../config/db'
+import { IUser } from '../../../../config/db/types'
+import { userLogged } from './../../../../utils/user'
 
-export default {  
-  async login(_, { dados: { email, password } }) {
-    const user = await db(table_users).where({
-      email
-    }).first()
+export default {
+	async login(
+		_,
+		{
+			dados: { email, password },
+		}: { dados: { email: string; password: string } }
+	) {
+		const user = await db(table_users)
+			.where({
+				email,
+			})
+			.first()
 
-    if (!user) {
-      throw new Error('Email não existe')
-    }
-    
-    const isEqual = await bcryptjs.compare(password, user.password)
-    
-    if (!isEqual) {
-      throw new Error('Senha incorreta')
-    }
+		if (!user) {
+			throw new Error('Email não existe')
+		}
 
-    return userLogged(user)
-  },
-  async usuarios() {
-    const results = await db(table_users).select('*')
+		const isEqual = await bcryptjs.compare(password, user.password)
 
-    return results
-  },
-  async usuario(_, args, ctx) {
-    console.log({ ctx })
-    const result = await db(table_users).where('id', args.id).first()
+		if (!isEqual) {
+			throw new Error('Senha incorreta')
+		}
 
-    return result
-  }
+		return userLogged(user)
+	},
+	async usuarios() {
+		const results = (await db(table_users).select('*')) as IUser[]
+
+		return results
+	},
+	async usuario(_, args: { id: number }) {
+		const result = (await db(table_users).where('id', args.id).first()) as IUser
+
+		return result
+	},
 }

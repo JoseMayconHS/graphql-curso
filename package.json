@@ -4,12 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "migrate": "npx tsc --project tsconfig.knex.json",
-    "migrate:latest": "cd build && knex migrate:latest",
-    "migrate:rollback": "cd build && knex migrate:rollback",
     "dev": "nodemon src/index.ts",
-    "build": "tsc --project tsconfig.json",
-    "build-test": "cd build && node src/index.js"
+    "build": "tsc",
+    "build-test": "node build/index.js"
   },
   "dependencies": {
     "apollo-server": "^3.8.2",

@@ -1,9 +1,9 @@
-import user from './user'
 import profile from './profile'
-import users_profiles from './users_profiles'
+import user from './user'
+import users_profiles from './user_profile'
 
 export default {
-  ...user,
-  ...profile,
-  ...users_profiles
+	...user,
+	...profile,
+	...users_profiles,
 }

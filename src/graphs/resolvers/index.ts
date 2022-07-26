@@ -1,7 +1,7 @@
-import Mutation from "./types/Mutation"
-import Query from "./types/Query"
+import Mutation from './types/Mutation'
+import Query from './types/Query'
 
 export default {
-  Mutation,
-  Query
+	Mutation,
+	Query,
 }
